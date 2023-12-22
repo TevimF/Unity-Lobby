@@ -3,10 +3,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     #region Variáveis
+
     public float velocidade = 5f;
-    public float limiteXMin = -9.5f; // Defina o limite mínimo em X
-    public float limiteXMax = 9.5f;  // Defina o limite máximo em X
-    public float limiteZMin = -9.5f; // Defina o limite mínimo em Z
+    public float limiteXMin = -9f; // Defina o limite mínimo em X
+    public float limiteXMax = 9f;  // Defina o limite máximo em X
+    public float limiteZMin = -10f; // Defina o limite mínimo em Z
     public float limiteZMax = 9.5f;  // Defina o limite máximo em Z
 
     private Rigidbody rb;
