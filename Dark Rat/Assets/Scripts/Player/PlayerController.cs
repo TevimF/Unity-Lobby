@@ -3,24 +3,29 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float velocidade = 5f;
+    private Rigidbody rb;
 
-    void Update()
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
+    void FixedUpdate()
+    {
+        MovimentarJogador();
+    }
+
+    void MovimentarJogador()
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
         Vector3 movimento = new Vector3(horizontal, 0f, vertical);
-        Vector3 velocidadeMovimento = movimento * velocidade * Time.deltaTime;
+        Vector3 velocidadeMovimento = movimento * velocidade;
 
-        transform.Translate(velocidadeMovimento);
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        // Se houver uma colisão, ajuste a posição para evitar atravessar a parede
-        if (collision.gameObject.CompareTag("Parede"))
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        }
+        // Configurar a velocidade do Rigidbody
+        rb.velocity = new Vector3(velocidadeMovimento.x, rb.velocity.y, velocidadeMovimento.z);
     }
 }
+
+
