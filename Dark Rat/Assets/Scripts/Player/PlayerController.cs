@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     public Animator player_animation;
     private Rigidbody rb;
     int ataques=0;
+    bool atacando = false;
 
     void Start()
     {
@@ -15,7 +16,7 @@ public class PlayerController : MonoBehaviour
         player_animation = GetComponent<Animator>();
     }
 
-    void Update()
+    void  Update()   
     {
         MovimentarJogador();
         CombateJogador();
@@ -24,6 +25,12 @@ public class PlayerController : MonoBehaviour
 
     void MovimentarJogador()
     {
+        if (atacando==false)
+        {
+        velocidade= 0;
+        }
+        else velocidade= 5;
+        
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         //Debug.Log("Horizontal: " + horizontal + " Vertical: " + vertical);
@@ -34,7 +41,8 @@ public class PlayerController : MonoBehaviour
         Vector3 velocidadeMovimento = movimento * velocidade;
 
         // Configurar a velocidade do Rigidbody
-        rb.velocity = new Vector3(velocidadeMovimento.x, rb.velocity.y, velocidadeMovimento.z);
+        rb.velocity = new Vector3(velocidadeMovimento.x, rb.velocity.y, velocidadeMovimento.z);   
+       
     }
     void AnimarJogador()
     {
@@ -60,6 +68,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Ataquei");
             player_animation.SetInteger("ataque", 1);
+            atacando=true;
         }
         else
         {
