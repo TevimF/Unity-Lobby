@@ -2,37 +2,140 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
+    #region Variáveis
     public GameObject player;
     Animator player_animation;
+    SpriteRenderer player_sprite;
     Rigidbody rb;
+
+    // movimentação
+    bool andando = false;
     bool atacando = false;
     bool correndo = false;
     public float v_run = 8f;
     public float v_walk = 4f;
-    float velocidade_atual =0f;
+    float velocidade_atual = 0;
 
+    // vida
+    public int vida_maxima = 5;
+    int vida_atual = 1;
+    bool ferido = false;
+    bool morto = false;
+
+    // combate
+    public int dano = 2;
+    public int energia_max = 100;
+    int energia_atual;
+
+    #endregion
+
+    #region Start
     void Start()
     {
+        // Pegar o componente Rigidbody do jogador
         rb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
-        player_animation = GetComponent<Animator>();
-    }
 
+        // Pegar o componente Animator do jogador
+        player_animation = GetComponent<Animator>();
+        player_sprite = GameObject.Find("Sprite").GetComponent<SpriteRenderer>();
+
+        // inicializando o player
+        vida_atual = vida_maxima;
+    }
+    #endregion
+
+    #region Métodos
     void FixedUpdate()
     {
         MovimentarJogador();
-        Debug.Log(velocidade_atual);
     }
+
     void Update()
     {
-        CombateJogador();
-        atacando = player_animation.GetCurrentAnimatorStateInfo(0).IsName("RatAttack") || 
-        player_animation.GetCurrentAnimatorStateInfo(0).IsName("RatAttack2");
-
+        PlayerStates();
+        CombateJogador();  
     }
-    void CombateJogador() // vai ficar os codigo de atk
+
+    #endregion
+
+    #region Funções
+    void PlayerStates()
     {
+        // movimentação
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        {
+            andando = true;
+        }
+        else
+        {
+            andando = false;
+        }
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            correndo = true;
+        }
+        else
+        {      
+            correndo = false;
+        }
+        // ataques
+        atacando =
+            player_animation.GetCurrentAnimatorStateInfo(0).IsName("RatAttack")
+            || player_animation.GetCurrentAnimatorStateInfo(0).IsName("RatAttack2");
+        // vida
+        if (vida_atual < vida_maxima)
+        {
+            ferido = true;
+        }
+        else
+        {
+            ferido = false;
+        }
+        if (vida_atual <= 0)
+        {
+            morto = true;
+        }
+        else
+        {
+            morto = false;
+        }
+    }
+
+    public void CombateJogador()
+    {
+        //falta mecanica de combate
+    }
+
+    void MovimentarJogador()
+    { 
+        if (atacando) // se o jogador estiver atacando, ele não pode se mover
+        {
+            velocidade_atual = 0f;
+        }
+        else if (correndo) // se o jogador estiver correndo, ele se move mais rápido v_run
+        {
+            velocidade_atual = v_run;
+        }
+        else // se o jogador estiver andando, ele se move mais devagar v_walk
+        {
+            velocidade_atual = v_walk;
+        }
+        // Pegar os valores do eixo horizontal e vertical valor de -1 a 1
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+        // Criar um vetor de movimento para ele andar
+        Vector3 movimento = new Vector3(horizontal, 0f, vertical);
+        Vector3 velocidadeMovimento = movimento * velocidade_atual;
+
+        // Configurar a velocidade do Rigidbody
+        rb.velocity = new Vector3(velocidadeMovimento.x, rb.velocity.y, velocidadeMovimento.z);
+        AnimarJogador();
+    }
+
+    void AnimarJogador()
+    {
+        // animação de ataque
         player_animation.speed = 1;
         if (atacando && Input.GetButtonDown("Fire1"))
         {
@@ -46,66 +149,32 @@ public class PlayerController : MonoBehaviour
         {
             player_animation.SetInteger("ataque", 0);
         }
-    }
-
-    void MovimentarJogador()
-    {   
-        float velocidade_atual = 0; // o multiplicador de velocidade pois velocidade vai armazenar o valor de v_run ou v_walk
-        if (Input.GetKey(KeyCode.LeftShift))
-        {  // correr
-            correndo = true;
-        }
-        else
-        {
-            correndo = false;
-        }
-        if (atacando)
-        {
-            velocidade_atual = 0f;
-        }
-        else if (correndo)
-        {
-            velocidade_atual = v_run;
-        }
-        else 
-        {
-            velocidade_atual = v_walk;
-        }
-        // Pegar os valores do eixo horizontal e vertical
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-        // Criar um vetor de movimento para ele andar
-        Vector3 movimento = new Vector3(horizontal, 0f, vertical);
-        Vector3 velocidadeMovimento = movimento * velocidade_atual;
-
-        // Configurar a velocidade do Rigidbody
-        rb.velocity = new Vector3(velocidadeMovimento.x, rb.velocity.y, velocidadeMovimento.z);
-        AnimarJogador();
-    }
-    void AnimarJogador()
-    {
-        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        // animação de movimentos
+        if (andando)
         {
             player_animation.SetBool("esta_andando", true);
-
-            if (Input.GetAxis("Horizontal") > 0) // Se o jogador estiver indo para a direita
+            if (!atacando) // ele nao pode andar e atacar ao mesmo tempo
             {
-                //virar sprite
-                transform.eulerAngles = new Vector3(0, 0, 0);
-            }
-            else if (Input.GetAxis("Horizontal") < 0) // Se o jogador estiver indo para a esquerda
-            {
-                transform.eulerAngles = new Vector3(0, 180, 0);
-            }
-            if (!correndo)
-            {
-                player_animation.SetBool("esta_correndo", false);
-                player_animation.speed = 1;
-            }
-            else
-            {
-                player_animation.SetBool("esta_correndo", true);
-                player_animation.speed = 1.5f;
+                if (Input.GetAxis("Horizontal") > 0) // Se o jogador estiver indo para a direita
+                {
+                    //desvirar sprite
+                    player_sprite.flipX = false;
+                }
+                else if (Input.GetAxis("Horizontal") < 0) // Se o jogador estiver indo para a esquerda
+                {
+                    //virar sprite
+                    player_sprite.flipX = true;
+                }
+                if (!correndo) // ao correr, a animação fica mais rápida
+                {
+                    player_animation.SetBool("esta_correndo", false);
+                    player_animation.speed = 1;
+                }
+                else
+                {
+                    player_animation.SetBool("esta_correndo", true);
+                    player_animation.speed = v_run / v_walk;
+                }
             }
         }
         else
@@ -113,4 +182,5 @@ public class PlayerController : MonoBehaviour
             player_animation.SetBool("esta_andando", false);
         }
     }
+    #endregion
 }
