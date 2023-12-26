@@ -7,3 +7,4 @@ package managers usados:
 UniversalRP
 2d Sprite 
 2d Animation
+Cinemachine
