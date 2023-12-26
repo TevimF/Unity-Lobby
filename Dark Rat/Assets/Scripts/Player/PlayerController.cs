@@ -22,17 +22,18 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         MovimentarJogador();
+        Debug.Log(velocidade_atual);
     }
     void Update()
     {
         CombateJogador();
         atacando = player_animation.GetCurrentAnimatorStateInfo(0).IsName("RatAttack") || 
         player_animation.GetCurrentAnimatorStateInfo(0).IsName("RatAttack2");
-        Debug.Log(velocidade_atual);
 
     }
     void CombateJogador() // vai ficar os codigo de atk
     {
+        player_animation.speed = 1;
         if (atacando && Input.GetButtonDown("Fire1"))
         {
             player_animation.SetInteger("ataque", 2);
@@ -96,15 +97,15 @@ public class PlayerController : MonoBehaviour
             {
                 transform.eulerAngles = new Vector3(0, 180, 0);
             }
-            if (correndo)
+            if (!correndo)
             {
-                player_animation.SetBool("esta_correndo", true);
-                player_animation.speed = 1.5f;
+                player_animation.SetBool("esta_correndo", false);
+                player_animation.speed = 1;
             }
             else
             {
-                player_animation.SetBool("esta_correndo", false);
-                player_animation.speed = 1f;
+                player_animation.SetBool("esta_correndo", true);
+                player_animation.speed = 1.5f;
             }
         }
         else
