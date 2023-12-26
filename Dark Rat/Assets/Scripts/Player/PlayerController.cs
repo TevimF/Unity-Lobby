@@ -4,11 +4,13 @@ public class PlayerController : MonoBehaviour
 {
 
     public GameObject player;
-    float velocidade;
     Animator player_animation;
     Rigidbody rb;
     bool atacando = false;
     bool correndo = false;
+    public float v_run = 8f;
+    public float v_walk = 4f;
+    float velocidade_atual =0f;
 
     void Start()
     {
@@ -26,6 +28,8 @@ public class PlayerController : MonoBehaviour
         CombateJogador();
         atacando = player_animation.GetCurrentAnimatorStateInfo(0).IsName("RatAttack") || 
         player_animation.GetCurrentAnimatorStateInfo(0).IsName("RatAttack2");
+        Debug.Log(velocidade_atual);
+
     }
     void CombateJogador() // vai ficar os codigo de atk
     {
@@ -44,10 +48,10 @@ public class PlayerController : MonoBehaviour
     }
 
     void MovimentarJogador()
-    {
+    {   
+        float velocidade_atual = 0; // o multiplicador de velocidade pois velocidade vai armazenar o valor de v_run ou v_walk
         if (Input.GetKey(KeyCode.LeftShift))
         {  // correr
-            velocidade = 8f;
             correndo = true;
         }
         else
@@ -56,18 +60,22 @@ public class PlayerController : MonoBehaviour
         }
         if (atacando)
         {
-            velocidade = 0f;
+            velocidade_atual = 0f;
         }
-        else
+        else if (correndo)
         {
-            velocidade = 5f;
+            velocidade_atual = v_run;
+        }
+        else 
+        {
+            velocidade_atual = v_walk;
         }
         // Pegar os valores do eixo horizontal e vertical
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         // Criar um vetor de movimento para ele andar
         Vector3 movimento = new Vector3(horizontal, 0f, vertical);
-        Vector3 velocidadeMovimento = movimento * velocidade;
+        Vector3 velocidadeMovimento = movimento * velocidade_atual;
 
         // Configurar a velocidade do Rigidbody
         rb.velocity = new Vector3(velocidadeMovimento.x, rb.velocity.y, velocidadeMovimento.z);
