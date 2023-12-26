@@ -45,17 +45,6 @@ public class PlayerController : MonoBehaviour
 
     void MovimentarJogador()
     {
-        if (atacando)
-        {
-            velocidade = 0f;
-        }
-        else
-        {
-            velocidade = 5f;
-        }
-
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
         if (Input.GetKey(KeyCode.LeftShift))
         {  // correr
             velocidade = 8f;
@@ -65,6 +54,17 @@ public class PlayerController : MonoBehaviour
         {
             correndo = false;
         }
+        if (atacando)
+        {
+            velocidade = 0f;
+        }
+        else
+        {
+            velocidade = 5f;
+        }
+        // Pegar os valores do eixo horizontal e vertical
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
         // Criar um vetor de movimento para ele andar
         Vector3 movimento = new Vector3(horizontal, 0f, vertical);
         Vector3 velocidadeMovimento = movimento * velocidade;
