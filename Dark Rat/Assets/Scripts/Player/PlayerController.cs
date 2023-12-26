@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
         if (Input.GetKey(KeyCode.LeftShift))
         {  // correr
-            velocidade = 10f;
+            velocidade = 8f;
             correndo = true;
         }
         else
@@ -91,10 +91,12 @@ public class PlayerController : MonoBehaviour
             if (correndo)
             {
                 player_animation.SetBool("esta_correndo", true);
+                player_animation.speed = 1.5f;
             }
             else
             {
                 player_animation.SetBool("esta_correndo", false);
+                player_animation.speed = 1f;
             }
         }
         else
