@@ -7,19 +7,19 @@ public class Inimigos : MonoBehaviour
 {
     #region Variáveis
     //objetos
-    public GameObject inimigo;
+    protected GameObject inimigo;
     Animator inimigo_animation;
     SpriteRenderer inimigo_sprite;
     Rigidbody rb;
 
     //movimentação
-    public float v_walk;
+    protected float v_walk;
     protected bool andando = false;
 
     //combate
     public int vida_maxima;
     protected int vida_atual;
-    public int dano;
+    protected int dano;
     protected bool atacando = false;
 
     //status
