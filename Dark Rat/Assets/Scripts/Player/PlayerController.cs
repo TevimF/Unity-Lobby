@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
     {
         Status();
         AnimarJogador();
-        CombateJogador();  
+        CombateJogador();
     }
 
     #endregion
@@ -64,6 +64,15 @@ public class PlayerController : MonoBehaviour
         if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
             andando = true;
+            // virar o sprite
+            if (Input.GetAxis("Horizontal") > 0)
+            {
+                player_sprite.flipX = false;
+            }
+            else if (Input.GetAxis("Horizontal") < 0)
+            {
+                player_sprite.flipX = true;
+            }
         }
         else
         {
@@ -74,7 +83,7 @@ public class PlayerController : MonoBehaviour
             correndo = true;
         }
         else
-        {      
+        {
             correndo = false;
         }
         // ataques
@@ -89,7 +98,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void MovimentarJogador()
-    { 
+    {
         if (atacando) // se o jogador estiver atacando, ele não pode se mover
         {
             velocidade_atual = 0f;
@@ -133,20 +142,10 @@ public class PlayerController : MonoBehaviour
         // animação de movimentos
         if (andando)
         {
-            // animação de andar
-            player_animation.SetBool("andando", true);
-
             if (!atacando) // ele nao pode andar e atacar ao mesmo tempo
             {
-                switch (Mathf.Sign(Input.GetAxis("Horizontal")))
-                {
-                    case >0: // se andando para a direita, desvira a sprite
-                        player_sprite.flipX = false;
-                        break;
-                    case <0: // se andando para a esquerda, virar sprite
-                        player_sprite.flipX = true;
-                        break;
-                }
+                // animação de andar
+                player_animation.SetBool("andando", true);
 
                 if (!correndo) // ao correr, a animação fica mais rápida
                 {
