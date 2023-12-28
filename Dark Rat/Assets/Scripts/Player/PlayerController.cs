@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
     #region Variáveis
     // objetos
     public GameObject player;
+    public Collider attack_collider;
     Animator player_animation;
     SpriteRenderer player_sprite;
     Rigidbody rb;
@@ -65,19 +66,14 @@ public class PlayerController : MonoBehaviour
         {
             andando = true;
             // virar o sprite
-            if (!atacando)
+            if (Input.GetAxis("Horizontal") > 0)
             {
-                // nao pode virar o sprite enquanto ataca
-                if (Input.GetAxis("Horizontal") > 0)
-                {
-                    player_sprite.flipX = false;
-                }
-                else if (Input.GetAxis("Horizontal") < 0)
-                {
-                    player_sprite.flipX = true;
-                }
+                player_sprite.flipX = false;
             }
-
+            else if (Input.GetAxis("Horizontal") < 0)
+            {
+                player_sprite.flipX = true;
+            }
         }
         else
         {
@@ -100,6 +96,7 @@ public class PlayerController : MonoBehaviour
     public void CombateJogador()
     {
         //falta mecanica de combate
+
     }
 
     void MovimentarJogador()
