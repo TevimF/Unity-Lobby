@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     #region Variáveis
+    // objetos
     public GameObject player;
     Animator player_animation;
     SpriteRenderer player_sprite;
@@ -19,13 +20,9 @@ public class PlayerController : MonoBehaviour
     // vida
     public int vida_maxima = 5;
     int vida_atual = 1;
-    bool ferido = false;
-    bool morto = false;
 
     // combate
     public int dano = 2;
-    public int energia_max = 100;
-    int energia_atual;
 
     #endregion
 
@@ -53,14 +50,15 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        PlayerStates();
+        Status();
+        AnimarJogador();
         CombateJogador();  
     }
 
     #endregion
 
     #region Funções
-    void PlayerStates()
+    void Status()
     {
         // movimentação
         if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
@@ -83,23 +81,6 @@ public class PlayerController : MonoBehaviour
         atacando =
             player_animation.GetCurrentAnimatorStateInfo(0).IsName("RatAttack")
             || player_animation.GetCurrentAnimatorStateInfo(0).IsName("RatAttack2");
-        // vida
-        if (vida_atual < vida_maxima)
-        {
-            ferido = true;
-        }
-        else
-        {
-            ferido = false;
-        }
-        if (vida_atual <= 0)
-        {
-            morto = true;
-        }
-        else
-        {
-            morto = false;
-        }
     }
 
     public void CombateJogador()
@@ -152,34 +133,37 @@ public class PlayerController : MonoBehaviour
         // animação de movimentos
         if (andando)
         {
-            player_animation.SetBool("esta_andando", true);
+            // animação de andar
+            player_animation.SetBool("andando", true);
+
             if (!atacando) // ele nao pode andar e atacar ao mesmo tempo
             {
-                if (Input.GetAxis("Horizontal") > 0) // Se o jogador estiver indo para a direita
+                switch (Mathf.Sign(Input.GetAxis("Horizontal")))
                 {
-                    //desvirar sprite
-                    player_sprite.flipX = false;
+                    case >0: // se andando para a direita, desvira a sprite
+                        player_sprite.flipX = false;
+                        break;
+                    case <0: // se andando para a esquerda, virar sprite
+                        player_sprite.flipX = true;
+                        break;
                 }
-                else if (Input.GetAxis("Horizontal") < 0) // Se o jogador estiver indo para a esquerda
-                {
-                    //virar sprite
-                    player_sprite.flipX = true;
-                }
+
                 if (!correndo) // ao correr, a animação fica mais rápida
                 {
-                    player_animation.SetBool("esta_correndo", false);
+                    player_animation.SetBool("correndo", false);
                     player_animation.speed = 1;
                 }
                 else
                 {
-                    player_animation.SetBool("esta_correndo", true);
+                    player_animation.SetBool("correndo", true);
                     player_animation.speed = v_run / v_walk;
                 }
             }
         }
         else
         {
-            player_animation.SetBool("esta_andando", false);
+            // animação de parado
+            player_animation.SetBool("andando", false);
         }
     }
     #endregion

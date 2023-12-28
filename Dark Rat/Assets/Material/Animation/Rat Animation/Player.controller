@@ -37,7 +37,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: esta_andando
+    m_ConditionEvent: andando
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -635645584773180732}
@@ -115,7 +115,7 @@ AnimatorController:
   m_Name: Player
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: esta_andando
+  - m_Name: andando
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -127,7 +127,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: esta_correndo
+  - m_Name: correndo
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -155,7 +155,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: esta_andando
+    m_ConditionEvent: andando
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5747680478723765042}
