@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ce579eeebded53846940928bc5ce9d0f
+guid: ce57fdf2365791d4aae5593bdcca8de2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Knight Rat attack (1)_0
+      name: Knight Rat attack_0
       rect:
         serializedVersion: 2
         x: 0
@@ -119,14 +119,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9cba47519f2e3434799e9153b58bdb06
-      internalID: -825193452
+      spriteID: 7fc5a67f4a66bb04c9a4c04765f494e0
+      internalID: -675980763
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight Rat attack (1)_1
+      name: Knight Rat attack_1
       rect:
         serializedVersion: 2
         x: 48
@@ -140,14 +140,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a052aad4ecd51994fa54a77852ce7f20
-      internalID: 108961138
+      spriteID: ef82fccf0b64c174a8bd448875727754
+      internalID: 89772179
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight Rat attack (1)_2
+      name: Knight Rat attack_2
       rect:
         serializedVersion: 2
         x: 96
@@ -161,14 +161,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 874c90f8bc6c32647a0e473edb8d0bef
-      internalID: -1647191315
+      spriteID: 8d8a8b99adbef9a449583bcc49b5049a
+      internalID: 616477890
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight Rat attack (1)_3
+      name: Knight Rat attack_3
       rect:
         serializedVersion: 2
         x: 144
@@ -182,14 +182,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b591557fbdb1a964dbae52eb928035ed
-      internalID: 105033500
+      spriteID: f988b0b7f35a5df4cbab7e7458246919
+      internalID: -676522619
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight Rat attack (1)_4
+      name: Knight Rat attack_4
       rect:
         serializedVersion: 2
         x: 0
@@ -203,14 +203,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ad985e9f5c6e694b8eaaab8565b93fb
-      internalID: 220548268
+      spriteID: b340d4e1fb85dcb4688d833c2225480a
+      internalID: -1763566932
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight Rat attack (1)_5
+      name: Knight Rat attack_5
       rect:
         serializedVersion: 2
         x: 48
@@ -224,14 +224,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1bec5ac782cb54e4faf120b59715c4d0
-      internalID: 1751042591
+      spriteID: d4864beb18b4e694e80f75768eb222e9
+      internalID: -476659610
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight Rat attack (1)_6
+      name: Knight Rat attack_6
       rect:
         serializedVersion: 2
         x: 96
@@ -245,14 +245,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9cc9a025ef86b9b48a560b5957dd36a2
-      internalID: -208205490
+      spriteID: 807eb8f9c7978af4fa3f6a1d68a32c68
+      internalID: -1794343511
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight Rat attack (1)_7
+      name: Knight Rat attack_7
       rect:
         serializedVersion: 2
         x: 144
@@ -266,14 +266,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64834a507ebbe474abf35592db0cfb72
-      internalID: -161083746
+      spriteID: a39022aa905d1b04dbd983d5461a4fa5
+      internalID: -1285107714
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight Rat attack (1)_8
+      name: Knight Rat attack_8
       rect:
         serializedVersion: 2
         x: 0
@@ -287,14 +287,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 58d089a9644681c4cae43104e87483cf
-      internalID: 1279425541
+      spriteID: 8d0918d8fb16e0c4590afcaf9850e40f
+      internalID: 1624288447
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight Rat attack (1)_9
+      name: Knight Rat attack_9
       rect:
         serializedVersion: 2
         x: 48
@@ -308,14 +308,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec5d121a40e65134d8dbad931bd0c496
-      internalID: 1127485610
+      spriteID: 9979276de0105944a90be5bf7eaee326
+      internalID: 1327781302
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight Rat attack (1)_10
+      name: Knight Rat attack_10
       rect:
         serializedVersion: 2
         x: 96
@@ -329,14 +329,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65cacf2db5242714cb0ac442bae92778
-      internalID: 307882354
+      spriteID: f6eee97dcdf583b45add72f2eb4fbb30
+      internalID: -1658903456
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight Rat attack (1)_11
+      name: Knight Rat attack_11
       rect:
         serializedVersion: 2
         x: 144
@@ -350,14 +350,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f8fe66fcafbdde942abec655656d4f57
-      internalID: -1925122355
+      spriteID: 3258ba87d41abe648bda5b1af3e94400
+      internalID: 1221265357
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight Rat attack (1)_12
+      name: Knight Rat attack_12
       rect:
         serializedVersion: 2
         x: 0
@@ -371,14 +371,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ba328f16befa5b498114628f83b8a4b
-      internalID: -1216068961
+      spriteID: fd782415849743545bde2d6d66226bf3
+      internalID: 1611672708
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight Rat attack (1)_13
+      name: Knight Rat attack_13
       rect:
         serializedVersion: 2
         x: 48
@@ -392,8 +392,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 095bf755856a6614c8835e34a7a8c9c0
-      internalID: -971759122
+      spriteID: d06304e257ac1d94399c28b54c760cde
+      internalID: -1666137225
       vertices: []
       indices: 
       edges: []
@@ -401,7 +401,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: ae4d9f81266568747b6b78d4fab915d8
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -409,20 +409,20 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Knight Rat attack (1)_0: -825193452
-      Knight Rat attack (1)_1: 108961138
-      Knight Rat attack (1)_10: 307882354
-      Knight Rat attack (1)_11: -1925122355
-      Knight Rat attack (1)_12: -1216068961
-      Knight Rat attack (1)_13: -971759122
-      Knight Rat attack (1)_2: -1647191315
-      Knight Rat attack (1)_3: 105033500
-      Knight Rat attack (1)_4: 220548268
-      Knight Rat attack (1)_5: 1751042591
-      Knight Rat attack (1)_6: -208205490
-      Knight Rat attack (1)_7: -161083746
-      Knight Rat attack (1)_8: 1279425541
-      Knight Rat attack (1)_9: 1127485610
+      Knight Rat attack_0: -675980763
+      Knight Rat attack_1: 89772179
+      Knight Rat attack_10: -1658903456
+      Knight Rat attack_11: 1221265357
+      Knight Rat attack_12: 1611672708
+      Knight Rat attack_13: -1666137225
+      Knight Rat attack_2: 616477890
+      Knight Rat attack_3: -676522619
+      Knight Rat attack_4: -1763566932
+      Knight Rat attack_5: -476659610
+      Knight Rat attack_6: -1794343511
+      Knight Rat attack_7: -1285107714
+      Knight Rat attack_8: 1624288447
+      Knight Rat attack_9: 1327781302
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
