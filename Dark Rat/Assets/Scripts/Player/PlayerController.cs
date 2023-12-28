@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -5,12 +7,15 @@ public class PlayerController : MonoBehaviour
     #region Variáveis
     // objetos
     public GameObject player;
+    Vector3 mira;
+    GameObject mira_objeto;
     Animator player_animation;
     SpriteRenderer player_sprite;
     Rigidbody rb;
 
     // movimentação
     bool andando = false;
+    bool flipX = false;
     bool atacando = false;
     bool correndo = false;
     public float v_run = 8f;
@@ -23,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
     // combate
     public int dano = 2;
+    public float range = 0.7f;
 
     #endregion
 
@@ -39,6 +45,9 @@ public class PlayerController : MonoBehaviour
 
         // inicializando o player
         vida_atual = vida_maxima;
+
+        // inicializando a mira
+        mira_objeto = GameObject.Find("mira");
     }
     #endregion
 
@@ -52,6 +61,7 @@ public class PlayerController : MonoBehaviour
     {
         Status();
         AnimarJogador();
+        Mirar();
         CombateJogador();
     }
 
@@ -75,10 +85,12 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetAxis("Horizontal") > 0)
                 {
                     player_sprite.flipX = false;
+                    flipX = false;
                 }
                 else if (Input.GetAxis("Horizontal") < 0)
                 {
                     player_sprite.flipX = true;
+                    flipX = true;
                 }
             }
         }
@@ -95,11 +107,21 @@ public class PlayerController : MonoBehaviour
             correndo = false;
         } 
     }
-
+    public void Mirar()
+    {
+        mira = player.transform.position;
+        if (flipX)
+        {
+            mira.x -= range;
+        }
+        else
+        {
+            mira.x += range;
+        }
+        mira_objeto.transform.position = mira;
+    }
     public void CombateJogador()
     {
-        //falta mecanica de combate
-
     }
 
     void MovimentarJogador()
@@ -135,10 +157,12 @@ public class PlayerController : MonoBehaviour
         if (atacando && Input.GetButtonDown("Fire1"))
         {
             player_animation.SetInteger("ataque", 2);
+            CombateJogador();
         }
         else if (!atacando && Input.GetButtonDown("Fire1"))
         {
             player_animation.SetInteger("ataque", 1);
+            CombateJogador();
         }
         else
         {
