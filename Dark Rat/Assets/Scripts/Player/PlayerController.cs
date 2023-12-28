@@ -65,14 +65,19 @@ public class PlayerController : MonoBehaviour
         {
             andando = true;
             // virar o sprite
-            if (Input.GetAxis("Horizontal") > 0)
+            if (!atacando)
             {
-                player_sprite.flipX = false;
+                // nao pode virar o sprite enquanto ataca
+                if (Input.GetAxis("Horizontal") > 0)
+                {
+                    player_sprite.flipX = false;
+                }
+                else if (Input.GetAxis("Horizontal") < 0)
+                {
+                    player_sprite.flipX = true;
+                }
             }
-            else if (Input.GetAxis("Horizontal") < 0)
-            {
-                player_sprite.flipX = true;
-            }
+
         }
         else
         {
