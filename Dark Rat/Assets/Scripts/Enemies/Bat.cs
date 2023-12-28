@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class cubo : Inimigos 
+public class Bat : Inimigos 
 {
     // Start is called before the first frame update
     void Start()

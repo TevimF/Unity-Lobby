@@ -5,7 +5,6 @@ public class PlayerController : MonoBehaviour
     #region Variáveis
     // objetos
     public GameObject player;
-    public Collider attack_collider;
     Animator player_animation;
     SpriteRenderer player_sprite;
     Rigidbody rb;
@@ -61,18 +60,26 @@ public class PlayerController : MonoBehaviour
     #region Funções
     void Status()
     {
-        // movimentação
+        // ataques
+        atacando =
+            player_animation.GetCurrentAnimatorStateInfo(0).IsName("RatAttack")
+            || player_animation.GetCurrentAnimatorStateInfo(0).IsName("RatAttack2");
+
+        // movimentos andando e flip
         if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
-            andando = true;
-            // virar o sprite
-            if (Input.GetAxis("Horizontal") > 0)
+            if (!atacando) // ele nao pode andar e atacar ao mesmo tempo
             {
-                player_sprite.flipX = false;
-            }
-            else if (Input.GetAxis("Horizontal") < 0)
-            {
-                player_sprite.flipX = true;
+                andando = true;
+                // virar o sprite
+                if (Input.GetAxis("Horizontal") > 0)
+                {
+                    player_sprite.flipX = false;
+                }
+                else if (Input.GetAxis("Horizontal") < 0)
+                {
+                    player_sprite.flipX = true;
+                }
             }
         }
         else
@@ -86,11 +93,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             correndo = false;
-        }
-        // ataques
-        atacando =
-            player_animation.GetCurrentAnimatorStateInfo(0).IsName("RatAttack")
-            || player_animation.GetCurrentAnimatorStateInfo(0).IsName("RatAttack2");
+        } 
     }
 
     public void CombateJogador()
