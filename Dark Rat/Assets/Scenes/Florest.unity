@@ -201,7 +201,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.1891075, y: -0, z: -0, w: 0.9819564}
+  m_LocalRotation: {x: 0.18910751, y: -0, z: -0, w: 0.9819564}
   m_LocalPosition: {x: 0, y: 8.841, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -797,6 +797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 703051250}
+  attack_collider: {fileID: 0}
   v_run: 8
   v_walk: 4
   vida_maxima: 5
@@ -924,12 +925,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 89772179, guid: ce57fdf2365791d4aae5593bdcca8de2, type: 3}
+  m_Sprite: {fileID: 1702784063, guid: 55bb571f68903de49aaa71cf58c2a058, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.5, y: 1.5}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1030,7 +1031,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a416b6c20f3ac4e81ef38bcd27c506, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inimigo: {fileID: 0}
+  v_walk: 0
   vida_maxima: 0
+  dano: 0
 --- !u!1 &1105868494
 GameObject:
   m_ObjectHideFlags: 0
@@ -1055,7 +1059,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1105868494}
-  m_LocalRotation: {x: 0.1891075, y: -0, z: -0, w: 0.9819564}
+  m_LocalRotation: {x: 0.18910751, y: -0, z: -0, w: 0.9819564}
   m_LocalPosition: {x: 0, y: 8.841, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1491,7 +1495,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a1219c4f269884c90795462b902ac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inimigo: {fileID: 0}
+  v_walk: 0
   vida_maxima: 0
+  dano: 0
 --- !u!1 &1908543172
 GameObject:
   m_ObjectHideFlags: 0
