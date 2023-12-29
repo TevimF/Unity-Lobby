@@ -2,16 +2,16 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class Player_geral : MonoBehaviour
 {
     #region Variáveis
     // objetos
     public GameObject player;
-    Vector3 mira;
-    GameObject mira_objeto;
-    Animator player_animation;
-    SpriteRenderer player_sprite;
-    Rigidbody rb;
+    public Vector3 mira;
+    public GameObject mira_objeto;
+    public Animator player_animation;
+    public SpriteRenderer player_sprite;
+    public Rigidbody rb;
 
     // movimentação
     bool andando = false;
@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Funções
-    void Status()
+    public void Status()
     {
         // ataques
         atacando =
@@ -150,7 +150,7 @@ public class PlayerController : MonoBehaviour
         AnimarJogador();
     }
 
-    void AnimarJogador()
+    public void AnimarJogador()
     {
         // animação de ataque
         player_animation.speed = 1;
