@@ -855,7 +855,8 @@ MonoBehaviour:
   mira: {x: 0, y: 0, z: 0}
   mira_objeto: {fileID: 0}
   vida_maxima: 5
-  atacando: 0
+  atacando_anim: 0
+  attack: 0
   dano: 2
   range: 0.7
 --- !u!114 &703051257
@@ -871,12 +872,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player_sprite: {fileID: 0}
-  playeranimation: {fileID: 0}
+  player_animator: {fileID: 0}
   player_movement: {fileID: 0}
   player_skills: {fileID: 0}
   atacando: 0
-  correndo: 0
-  andando: 0
 --- !u!114 &703051258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -893,8 +892,10 @@ MonoBehaviour:
   player_skills: {fileID: 0}
   player: {fileID: 0}
   rb: {fileID: 0}
+  boxCollider: {fileID: 0}
   v_run: 8
   v_walk: 4
+  velocidade_atual: 0
 --- !u!1 &712712537
 GameObject:
   m_ObjectHideFlags: 0

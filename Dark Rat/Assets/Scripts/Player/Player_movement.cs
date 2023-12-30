@@ -1,80 +1,101 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player_movement : MonoBehaviour
 {
-    #region Variáveis
     // objetos
     public Player_animation player_animation;
     public Player_skills player_skills;
     public GameObject player;
     public Rigidbody rb;
+    public BoxCollider boxCollider;
+
     // status
     bool andando = false;
     bool atacando = false;
-    bool correndo = false;
+
     // velocidades
     public float v_run = 8f;
     public float v_walk = 4f;
-    float velocidade_atual = 0;
-    // Start is called before the first frame update
-    #endregion
+    public float velocidade_atual = 0;
+
     void Start()
     {
         // inicializando os componentes
         rb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
         player_animation = player.GetComponent<Player_animation>();
-
+        boxCollider = GetComponent<BoxCollider>();
     }
+
     void FixedUpdate()
     {
         MovimentarJogador();
     }
-    // Update is called once per frame
     void Update()
     {
-        atacando = player_animation.ta_rolando("ataque1")
-        || player_animation.ta_rolando("ataque2");
+        atacando = player_animation.TaRolando("ataque1")
+        || player_animation.TaRolando("ataque2");
     }
 
     void MovimentarJogador()
     {
-        if (atacando) // se o jogador estiver atacando, ele não pode se mover
+        // definindo o que é andar
+        if (atacando) // se o jogador estiver atacando, ele não pode se mover direito
         {
-            velocidade_atual = 0f;
+            velocidade_atual = v_walk/2;
             andando = false;
-        }
-        else if (correndo) // se o jogador estiver correndo, ele se move mais rápido v_run
-        {
-            andando = true;
-            velocidade_atual = v_run;
-        }
-        else // se o jogador estiver andando, ele se move mais devagar v_walk
-        {
-            andando = true;
-            velocidade_atual = v_walk;
-        }
-        // Pegar os valores do eixo horizontal e vertical valor de -1 a 1
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-        // Criar um vetor de movimento para ele andar
-        Vector3 movimento = new Vector3(horizontal, 0f, vertical);
-        Vector3 velocidadeMovimento = movimento * velocidade_atual;
-
-        // Configurar a velocidade do Rigidbody
-        rb.velocity = new Vector3(velocidadeMovimento.x, rb.velocity.y, velocidadeMovimento.z);
-        player_animation.AnimatePlayer("andando", andando);
-
-        if (Input.GetKey(KeyCode.LeftShift) && andando)
-        {
-            correndo = true;
         }
         else
         {
-            correndo = false;
+            andando = Input.GetAxis("Horizontal") != 0
+            || Input.GetAxis("Vertical") != 0;
         }
-        player_animation.AnimatePlayer("correndo", correndo);
+
+        // definindo o que é correr
+        if (!atacando && Input.GetKey(KeyCode.LeftShift))
+        {
+            velocidade_atual = v_run;
+            player_animation.AnimatePlayer("correndo");
+        }
+        else if (andando)
+        {
+            velocidade_atual = v_walk;
+            player_animation.AnimatePlayer("andando");
+        }
+        else
+        {
+            player_animation.AnimatePlayer("parado");
+        }
+
+        // Pegar os valores do eixo horizontal e vertical valor de -1 a 1
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+        if (horizontal < 0)
+        {
+            boxCollider.center = new Vector3(boxCollider.center.x * -1, boxCollider.center.y, boxCollider.center.z);
+        }
+        else if (horizontal > 0)
+        {
+            boxCollider.center = new Vector3(boxCollider.center.x * -1, boxCollider.center.y, boxCollider.center.z);
+        }
+
+
+        // Movimentar o jogador
+        Vector3 movimento = new Vector3(horizontal, 0f, vertical);
+        Vector3 velocidadeMovimento = movimento * velocidade_atual;
+        rb.velocity = new Vector3(velocidadeMovimento.x, rb.velocity.y, velocidadeMovimento.z);
+
+    }
+
+    public float Boost()
+    {
+        if (v_walk != 0)
+        {
+            return (float)(v_run / v_walk);
+        }
+        else
+        {
+            return 0;
+        }
     }
 }

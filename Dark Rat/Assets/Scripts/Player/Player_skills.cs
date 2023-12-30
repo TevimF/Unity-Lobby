@@ -16,7 +16,8 @@ public class Player_skills : MonoBehaviour
     int vida_atual = 1;
 
     // combate
-    public bool atacando = false;
+    public bool atacando_anim = false;
+    public bool attack = false;
     public int dano = 2;
     public float range = 0.7f;
     #endregion
@@ -33,25 +34,19 @@ public class Player_skills : MonoBehaviour
     }
     void Update()
     {
-        atacando = player_animation.ta_rolando("ataque1") 
-        || player_animation.ta_rolando("ataque2");
+        atacando_anim = player_animation.TaRolando("ataque1") 
+        || player_animation.TaRolando("ataque2");
         Atacar();
     }
     public void Atacar()
     {
-        if (Input.GetButtonDown("Fire1") && atacando){
-            player_animation.AnimatePlayer("ataque2", true);
-            atacando = true;
+        attack = Input.GetButtonDown("Fire1");
+        if (attack && !atacando_anim){
+            player_animation.AnimatePlayer("ataque1");
         }
-        else if (Input.GetButtonDown("Fire1") && !atacando)
-        {
-            player_animation.AnimatePlayer("ataque1", true);
-            atacando = true;
+        else if (attack && atacando_anim){
+            player_animation.AnimatePlayer("ataque2");
         }
-        else {
-            player_animation.AnimatePlayer("ataque1", false);
-            player_animation.AnimatePlayer("ataque2", false);
-        }
-    }
         
+    }
 }
