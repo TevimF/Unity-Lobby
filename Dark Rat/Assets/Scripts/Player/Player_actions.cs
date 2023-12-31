@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class Player_skills : MonoBehaviour
+public class Player_actions : MonoBehaviour
 {
     #region Variáveis
     // objetos
@@ -17,7 +18,6 @@ public class Player_skills : MonoBehaviour
 
     // combate
     public bool atacando_anim = false;
-    public bool attack = false;
     public int dano = 2;
     public float range = 0.7f;
     #endregion
@@ -37,10 +37,11 @@ public class Player_skills : MonoBehaviour
         atacando_anim = player_animation.TaRolando("ataque1") 
         || player_animation.TaRolando("ataque2");
         Atacar();
+        Status();
     }
     public void Atacar()
     {
-        attack = Input.GetButtonDown("Fire1");
+        bool attack = Input.GetButtonDown("Fire1");
         if (attack && !atacando_anim){
             player_animation.AnimatePlayer("ataque1");
         }
@@ -48,5 +49,22 @@ public class Player_skills : MonoBehaviour
             player_animation.AnimatePlayer("ataque2");
         }
         
+        bool block = Input.GetButtonDown("Fire2");
+        if (block){
+            player_animation.AnimatePlayer("shield");
+        }
+    }
+    public void Status()
+    {
+        if (vida_atual <= 0)
+        {
+            player_animation.AnimatePlayer("morrer");
+        }
+
+    }
+    public void TomarDano(int dano)
+    {
+        vida_atual -= dano;
+        player_animation.AnimatePlayer("dano");
     }
 }

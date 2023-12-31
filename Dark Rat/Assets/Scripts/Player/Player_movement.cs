@@ -4,7 +4,7 @@ public class Player_movement : MonoBehaviour
 {
     // objetos
     public Player_animation player_animation;
-    public Player_skills player_skills;
+    public Player_actions player_actions;
     public GameObject player;
     public Rigidbody rb;
     public BoxCollider boxCollider;
@@ -39,7 +39,14 @@ public class Player_movement : MonoBehaviour
 
     void MovimentarJogador()
     {
-        // definindo o que é andar
+        bool morto = player_animation.TaRolando("morrer");
+        if (morto)
+        {
+            velocidade_atual = 0;
+            andando = false;
+            rb.velocity = Vector3.zero;
+            return;
+        }
         if (atacando) // se o jogador estiver atacando, ele não pode se mover direito
         {
             velocidade_atual = v_walk/2;
