@@ -1,33 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager;
 using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor.PackageManager;
+#endif
 
 public class Inimigos : MonoBehaviour
 {
     #region Variáveis
-    //objetos
+    // Objetos
     public GameObject inimigo;
     Animator inimigo_animation;
     SpriteRenderer inimigo_sprite;
     Rigidbody rb;
 
-    //movimentação
+    // Movimentação
     public float v_walk;
     protected bool andando = false;
 
-    //combate
+    // Combate
     public int vida_maxima;
     protected int vida_atual;
     public int dano;
     protected bool atacando = false;
 
-    //status
+    // Status
     protected bool ferido = false;
     protected bool morto = false;
     protected bool atordoado = false;
 
     #endregion
+
     #region Start
     // Start is called before the first frame update
     void Start()
@@ -39,6 +43,7 @@ public class Inimigos : MonoBehaviour
         inimigo_animation = GetComponent<Animator>();
     }
     #endregion
+
     #region Métodos
     void FixedUpdate()
     {
@@ -52,10 +57,11 @@ public class Inimigos : MonoBehaviour
         Combate();
     }
     #endregion
+
     #region Funções
     public void Status()
     {
-        // morto ou vivo
+        // Morto ou vivo
         if (vida_atual >= 0)
         {
             morto = false;
@@ -64,7 +70,7 @@ public class Inimigos : MonoBehaviour
         {
             morto = true;
         }
-        // ferido ou não
+        // Ferido ou não
         if (vida_atual < vida_maxima)
         {
             ferido = true;
@@ -79,18 +85,19 @@ public class Inimigos : MonoBehaviour
     {
         if (!morto)
         {
-            //movimentação do inimigo
+            // Movimentação do inimigo
         }
         Animar();
     }
+
     public void Animar()
     {
-        // animação do inimigo
+        // Animação do inimigo
     }
 
     public void Combate()
     {
-        //combate do inimigo, ataque e defesa
+        // Combate do inimigo, ataque e defesa
     }
 
     public void TomarDano(int dano)
@@ -105,9 +112,14 @@ public class Inimigos : MonoBehaviour
             ferido = true;
         }
     }
+
     public void Morrer()
     {
         Destroy(this.gameObject);
     }
     #endregion
+
+#if UNITY_EDITOR
+    // Código relacionado ao PackageManager aqui
+#endif
 }
