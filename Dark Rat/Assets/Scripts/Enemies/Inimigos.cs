@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager;
+//using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class Inimigos : MonoBehaviour
@@ -86,6 +86,7 @@ public class Inimigos : MonoBehaviour
     public void Animar()
     {
         // animação do inimigo
+        
     }
 
     public void Combate()
