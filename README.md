@@ -1,5 +1,5 @@
 **Title:** Dark Rat - A Unity 2.5D Adventure
-**This game is still in development**
+**(This game is still in development)**
 
 **Introduction:**
 
