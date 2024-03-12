@@ -4,7 +4,7 @@
 **Introduction:**
 
 * **Captivating Hook:** Embark on a heart-wrenching journey with Dark Rat, a brave rodent venturing through a shadowy world. Guide him as he searches for the light, freedom, and answers to the questions that plague him. 
-* **Genre Clarity:** Developed in Unity, Dark Rat is a captivating 2.5D adventure game.
+* **Genre Clarity:** Developed in Unity, Dark Rat is a captivating 2.5D adventure game whit pixelated graphics.
 * **Collaboration Highlight:** Created collaboratively with a friend, this project showcases our passion for game development. (If you'd like to emphasize the collaborative aspect.)
 
 **Gameplay Overview:**
