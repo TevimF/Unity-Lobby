@@ -1,6 +1,5 @@
-I'd be glad to help you craft a compelling README for your Unity game, Dark Rat! Here's a refined version incorporating the best aspects of the previous suggestions and addressing potential shortcomings:
-
 **Title:** Dark Rat - A Unity 2.5D Adventure
+**This game is still in development**
 
 **Introduction:**
 
